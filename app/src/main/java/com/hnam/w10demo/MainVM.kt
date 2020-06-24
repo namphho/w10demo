@@ -16,10 +16,10 @@ class MainVM : ViewModel(){
     }
 
 
-    var state : Int = 0
+    var count : Int = 0
 
     fun clickAdd(){
-        state++
+        count++
     }
 
     override fun onCleared() {

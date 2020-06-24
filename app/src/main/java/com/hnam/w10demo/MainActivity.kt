@@ -4,26 +4,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 
 class MainActivity : AppCompatActivity() {
 
     lateinit  var tvTitle : TextView
     lateinit  var btnAdd : Button
-    var count = 0
+    lateinit var mainVM: MainVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainVM = ViewModelProvider(this).get(MainVM::class.java)
 
         tvTitle = findViewById(R.id.tv_text)
         btnAdd = findViewById(R.id.btn_add)
-        tvTitle.text = "$count"
+        tvTitle.text = "${mainVM.count}"
         btnAdd.setOnClickListener {
-            count++
-            tvTitle.text = "$count"
+            mainVM.clickAdd()
+            tvTitle.text = "${mainVM.count}"
         }
     }
 }
