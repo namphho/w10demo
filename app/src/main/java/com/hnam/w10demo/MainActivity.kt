@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainVM = ViewModelProvider(this).get(MainVM::class.java)
+        val factory = MainVMFactory(10)
+        mainVM = ViewModelProvider(this, factory).get(MainVM::class.java)
 
         tvTitle = findViewById(R.id.tv_text)
         btnAdd = findViewById(R.id.btn_add)

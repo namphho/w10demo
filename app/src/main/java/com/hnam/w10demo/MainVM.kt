@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
  * Created by nampham on 6/24/20.
  */
 
-class MainVM : ViewModel(){
+class MainVM(initValue : Int) : ViewModel(){
     companion object {
         private val TAG = MainVM::class.java.simpleName
     }
@@ -16,7 +16,7 @@ class MainVM : ViewModel(){
     }
 
 
-    var count : Int = 0
+    var count : Int = initValue
 
     fun clickAdd(){
         count++
