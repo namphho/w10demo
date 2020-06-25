@@ -14,5 +14,4 @@ class MainVMFactory(private val initValue: Int) : ViewModelProvider.Factory{
         }
         throw IllegalArgumentException("unknown class")
     }
-
 }

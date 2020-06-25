@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
@@ -15,15 +16,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val factory = MainVMFactory(10)
         mainVM = ViewModelProvider(this, factory).get(MainVM::class.java)
+
+        mainVM.count.observe(this, Observer {
+            tvTitle.text = "$it"
+        })
 
         tvTitle = findViewById(R.id.tv_text)
         btnAdd = findViewById(R.id.btn_add)
         tvTitle.text = "${mainVM.count}"
         btnAdd.setOnClickListener {
             mainVM.clickAdd()
-            tvTitle.text = "${mainVM.count}"
+
         }
     }
 }

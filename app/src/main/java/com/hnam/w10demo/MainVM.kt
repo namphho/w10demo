@@ -1,6 +1,8 @@
 package com.hnam.w10demo
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 /**
@@ -16,10 +18,10 @@ class MainVM(initValue : Int) : ViewModel(){
     }
 
 
-    var count : Int = initValue
+    var count : MutableLiveData<Int> = MutableLiveData(initValue)
 
     fun clickAdd(){
-        count++
+        count.value = count.value?.plus(1)
     }
 
     override fun onCleared() {
